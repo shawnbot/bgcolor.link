@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <style>
+
+      #color {
+        font-family: "Monaco", "Courier New", monospace;
+        font-size: 100px;
+        line-height: 1em;
+        position: absolute;
+        top: 50%;
+        left: 5%;
+        margin-top: -.5em;
+        padding: 0;
+        width: 90%;
+        text-align: center;
+        border: none;
+        background: none;
+        -webkit-appearance: caret;
+      }
+
+    </style>
+  </head>
+  <body>
+    <input id="color" type="text" size="32">
+    <script>
+
+      var body = document.body,
+          input = document.getElementById("color"),
+          title = document.title;
+      function hashchange() {
+        var color = location.hash;
+        if (!color.match(/^#[0-9a-f]{3,6}$/)) {
+          color = color.substr(1);
+        }
+        input.value = color;
+        document.title = ["background: ", color, ";"].join("");
+        body.style.setProperty("background", color);
+      }
+
+      function select() {
+        body.click();
+        input.setSelectionRange(0, input.value.length);
+      }
+
+      window.addEventListener("hashchange", hashchange);
+      hashchange();
+      select();
+
+      body.addEventListener("keypress", function(e) {
+        switch (e.keyCode) {
+          case 13:
+            location.hash = input.value;
+            setTimeout(select, 10);
+            return false;
+        }
+      });
+
+    </script>
+  </body>
+</html>

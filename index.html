@@ -32,7 +32,7 @@
       function hashchange() {
         var color = location.hash;
         if (!color.match(/^#[0-9a-f]{3,6}$/)) {
-          color = color.substr(1);
+          color = color.substr(2);
         }
         input.value = color;
         document.title = ["background: ", color, ";"].join("");
@@ -45,8 +45,14 @@
       }
 
       window.addEventListener("hashchange", hashchange);
-      hashchange();
-      select();
+
+      if (location.hash) {
+        hashchange();
+      } else {
+        input.value = location.hash = "salmon";
+      }
+
+      setTimeout(select, 10);
 
       body.addEventListener("keypress", function(e) {
         switch (e.keyCode) {

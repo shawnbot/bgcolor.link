@@ -32,7 +32,7 @@
       function hashchange() {
         var color = location.hash;
         if (!color.match(/^#[0-9a-f]{3,6}$/)) {
-          color = color.substr(2);
+          color = color.substr(1);
         }
         input.value = color;
         document.title = ["background: ", color, ";"].join("");

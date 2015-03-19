@@ -37,7 +37,7 @@
           title = document.title;
       function hashchange() {
         var color = location.hash;
-        if (!color.match(/^#[0-9a-f]{3,6}$/)) {
+        if (!color.match(/^#[0-9a-f]{3,6}$/i)) {
           color = color.substr(1);
         }
         input.value = color;
